@@ -358,4 +358,56 @@ VALUES
 (4,'2026-06-23',5600000,N'Chuyển khoản',N'Đã thanh toán'),
 (5,'2026-06-24',22000000,N'Tiền mặt',N'Đã hoàn tiền');
 
+CREATE TABLE Promotions(
+    PromotionID INT PRIMARY KEY IDENTITY(1,1),
+    PromotionName NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(300),
+    DiscountPercent INT CHECK(DiscountPercent BETWEEN 0 AND 100),
+    StartDate DATE,
+    EndDate DATE,
+    Status NVARCHAR(30)
+);
+CREATE TABLE TourPromotions(
+    TourPromotionID INT PRIMARY KEY IDENTITY(1,1),
+
+    TourID INT NOT NULL,
+
+    PromotionID INT NOT NULL,
+
+    FOREIGN KEY(TourID)
+    REFERENCES Tours(TourID),
+
+    FOREIGN KEY(PromotionID)
+    REFERENCES Promotions(PromotionID)
+);
+
+INSERT INTO Promotions
+(PromotionName,Description,DiscountPercent,StartDate,EndDate,Status)
+VALUES
+(N'Hè Rực Rỡ',
+ N'Giảm giá tour mùa hè',
+ 10,
+ '2026-06-01',
+ '2026-08-31',
+ N'Đang áp dụng'),
+
+(N'Lễ Quốc Khánh',
+ N'Khuyến mãi dịp 2/9',
+ 15,
+ '2026-08-25',
+ '2026-09-05',
+ N'Sắp diễn ra'),
+
+(N'Black Friday',
+ N'Giảm giá cuối năm',
+ 20,
+ '2026-11-20',
+ '2026-11-30',
+ N'Chưa diễn ra');
+ INSERT INTO TourPromotions(TourID,PromotionID)
+VALUES
+(1,1),
+(2,1),
+(4,2),
+(5,2);
 
