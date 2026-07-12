@@ -228,6 +228,21 @@ CREATE TABLE Payments(
     FOREIGN KEY(BookingID)
     REFERENCES Bookings(BookingID)
 );
+--------------------------
+-- Reviews
+--------------------------
+CREATE TABLE Reviews(
+    ReviewID INT PRIMARY KEY IDENTITY(1,1),
+    CustomerID INT,
+    TourID INT,
+    Rating INT CHECK(Rating >= 1 AND Rating <= 5),
+    Comment NVARCHAR(500),
+    ReviewDate DATE DEFAULT GETDATE(),
+    FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY(TourID) REFERENCES Tours(TourID)
+);
+
+
 USE Travel_Company;
 GO
 
@@ -370,6 +385,15 @@ VALUES
 (4,'2026-06-23',5600000,N'Chuyển khoản',N'Đã thanh toán',1000004,'VCB-240623-001','BK4',N'BK4 chuyen khoan'),
 (5,'2026-06-24',22000000,N'Tiền mặt',N'Đã hoàn tiền',1000005,'TM-240624-001','BK5',N'BK5 huy');
 
+------------------------
+-- Dữ liệu mẫu cho bảng Reviews
+------------------------
+INSERT INTO Reviews(CustomerID, TourID, Rating, Comment)
+VALUES
+(1, 1, 5, N'Tour đi Sapa rất tuyệt vời, hướng dẫn viên nhiệt tình!'),
+(2, 2, 4, N'Khách sạn đẹp, đồ ăn ngon, tuy nhiên lịch trình di chuyển hơi kề sát nhau.'),
+(3, 3, 5, N'Biển Phú Quốc trong xanh, dịch vụ của công ty rất chu đáo, xứng đáng 5 sao.'),
+(4, 1, 3, N'Lịch trình hơi dày đặc, bù lại cảnh Sapa thì miễn chê.');
 CREATE TABLE Promotions(
     PromotionID INT PRIMARY KEY IDENTITY(1,1),
     PromotionName NVARCHAR(100) NOT NULL,
