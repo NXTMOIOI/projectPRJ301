@@ -1,0 +1,15 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Build outputs
+Travel_Project/build/
+Travel_Project/dist/
+Travel_Project/nbproject/private/
+Travel_Project/**/tmp-classes/
+*.class
+*.war
+
+# Local payment config
+Travel_Project/src/java/SePaySandbox.properties
+

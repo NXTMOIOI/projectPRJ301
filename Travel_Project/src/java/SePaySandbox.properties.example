@@ -1,0 +1,6 @@
+# Copy this file to SePaySandbox.properties on your machine and fill in your local values.
+merchantId=YOUR_SEPAY_MERCHANT_ID
+secretKey=YOUR_SEPAY_SECRET_KEY
+checkoutUrl=https://pay-sandbox.sepay.vn/v1/checkout/init
+appBaseUrl=https://your-ngrok-domain.ngrok-free.dev/Travel_Project
+
